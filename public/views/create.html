@@ -23,6 +23,7 @@
     </div> -->
     <div class="col-sm-12">
         <h1><i class="fa fa-th-list" aria-hidden="true"></i> Cards</h1>
+        <p>Double click the card to edit it.</p>
 
         <div class="col-sm-6 cardCol">
             <input type="text" placeholder="Find cards" class="form-control" ng-model="searchFilter">
@@ -55,20 +56,21 @@
                 <button type="submit" class="btn btn-default btn-xs">add this card ></button>
             </form>
         </div>
-        <div class="col-xs-6 col-sm-4 col-md-3 cardCol" ng-repeat="card in cards | orderBy:order | filter:searchFilter track by $index" style="cursor: pointer;" ng-dblclick="editCard(card._id)">
-            <div class="card text-center">
-                <span class="cate">{{card.cate}} - {{card.level}}</span >
-                <h3>{{card.question}}</h3>
-
-                <form ng-if="">
+        <div class="col-xs-6 col-sm-4 col-md-3 cardCol" ng-repeat="card in cards | orderBy:order | filter:searchFilter track by $index" style="cursor: pointer;" ng-dblclick="editCard(cards.indexOf(card),card._id)" ng-if="cards.indexOf(card) > -1">
+            <div class="card text-center" ng-class="(edditedCardId !== cards.indexOf(card))?'card':'card formCard'">
+                <span ng-if="edditedCardId !== cards.indexOf(card)">
                     <span class="cate">{{card.cate}} - {{card.level}}</span >
-                    <h3><input type="text" class="form-control" placeholder="question" ng-model="edittedCard.question" required></h3>
-                    <h3><input type="text" class="form-control" placeholder="answer" ng-model="edittedCard.answer" required></h3>
+                        <h3>{{card.question}}</h3>
+                </span>
+                <form ng-if="edditedCardId == cards.indexOf(card)" ng-submit="editOne(edditedCard._id,cards.indexOf(card))">
+                    <span class="cate">{{edditedCard.cate}} - {{edditedCard.level}}</span >
+                    <h3><input type="text" class="form-control" placeholder="question" ng-model="edditedCard.question" required></h3>
+                    <h3><input type="text" class="form-control" placeholder="answer" ng-model="edditedCard.answer" required></h3>
+                    <button type="submit" class="btn btn-success btn-xs">Update</button>
+                    <div class="btn btn-danger btn-xs" ng-click="deleteOne(edditedCard._id,cards.indexOf(card))">Delete</div>
+                    <div class="btn btn-default btn-xs" ng-click="cancelClicked()">Cancel</div>
                 </form>
-
-
             </div>
-
         </div>
 
     </div>

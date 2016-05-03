@@ -15,6 +15,19 @@ app.service('Cards', function($http) {
             data: newCard
         });
     }
+    this.delete = (id) => {
+        return $http({
+            method: 'DELETE',
+            url: `/api/cards/${id}`
+        });
+    }
+    this.update = (id, edditedCard) => {
+        return $http({
+            method: 'PUT',
+            url: `/api/cards/${id}`,
+            data: edditedCard
+        });
+    }
     this.getAllByCategory = (category) => {
         return $http({
             method: 'GET',
