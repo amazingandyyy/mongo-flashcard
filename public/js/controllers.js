@@ -12,12 +12,29 @@ app.controller('createCtrl', function($scope, Cards) {
 
     Cards.getAll()
         .then(function(cards) {
-            console.log('cards', cards);
-            $scope.cards = cards.data;
+            // console.log('cards', cards);
+            $scope.cards = cards.data.reverse();
         }, function(err) {
             console.log('err when get all cards: ', err);
-        })
-    //
+        });
+
+    $scope.addnewCard = () => {
+        console.log('$scope.newCard; ',$scope.newCard);
+        Cards.create($scope.newCard)
+            .then(function(res) {
+                console.log('card', res.data);
+                $scope.cards.unshift(res.data)
+                $scope.newCard = [];
+            }, function(err) {
+                console.log('err when get all cards: ', err);
+            })
+    }
+
+
+
+
+
+
     $scope.sortBy = (order) => {
         if ($scope.order === order) {
             $scope.order = `-${order}`;
@@ -27,11 +44,6 @@ app.controller('createCtrl', function($scope, Cards) {
             // document.getElementById(`${order}Scaret`).style.transform = "rotate(180deg)";
         }
     }
-    //
-    // $scope.addNewcard = () => {
-    //     $scope.cards.push($scope.newcard);
-    //     $scope.newcard = [];
-    // }
 
 });
 //

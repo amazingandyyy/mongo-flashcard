@@ -5,16 +5,16 @@ var router = express.Router();
 var Card = require('../models/card')
 
 router.get('/', (err, res) => {
-    Card.find({}, (err, trees) => {
+    Card.find({}, (err, cards) => {
         if (err) return res.status(400).send('errr: ', err);
-        res.send(trees); // always give me an array
+        res.send(cards); // always give me an array
     });
 });
 router.post('/', (req, res) => {
-    var card = new Card(req.body);
-    card.save((err, newCard) => {
+    var newCard = new Card(req.body);
+    newCard.save((err, card) => {
         if (err) return res.status(400).send('errr: ', err);
-        res.send(newCard);
+        res.send(card);
     });
 });
 router.get('/:id', (req, res) => {
