@@ -1,7 +1,9 @@
-/*body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}*/
+body {
+     user-select: none;
+     -webkit-user-select: none;
+     -moz-user-select: none;
+
+}
 
 .cardCol {
     padding: 5px;

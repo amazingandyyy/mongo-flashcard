@@ -36,37 +36,46 @@ app.controller('createCtrl', function($scope, Cards) {
             $scope.order = order;
         }
     }
+
+
+    $scope.editCard = (id) =>{
+        console.log('id clicked: ', id);
+    }
 });
 
 app.controller('readCtrl', function(Cards, $scope) {
     console.log('readCtrl loaded');
     var cardList;
     var index = 0;
-    Cards.getAll()
-        .then(function(cards) {
-             cardList = cards.data.reverse();
-            console.log('cardList: ',cardList);
-            console.log('cardList1: ',cardList[index]);
-        })
-        .then(function(){
-            $scope.currentCard = cardList[index];
-            $scope.nextCard = () => {
-                index++
-                if(index>cardList.length-1){
-                    index = 0;
-                }
+    $scope.filterRead = (category) =>{
+        console.log("category: ", category);
+        Cards.getAllByCategory(category)
+            .then(function(cards) {
+                cardList = cards.data.reverse();
+                console.log('cardList: ',cardList);
                 $scope.currentCard = cardList[index];
-                console.log('index: ', index);
+            })
+            .then(function(){
 
-                $scope.currentCard.show = false;
-            }
-            $scope.answerShow = () => {
-                $scope.currentCard.show = !$scope.currentCard.show;
-            }
-        })
-        .catch(function(err) {
-            console.log('err when get all cards: ', err);
-        })
+                $scope.nextCard = () => {
+                    index++
+                    if(index>cardList.length-1){
+                        index = 0;
+                    }
+                    $scope.currentCard = cardList[index];
+                    console.log('index: ', index);
+
+                    $scope.currentCard.show = false;
+                }
+                $scope.answerShow = () => {
+                    $scope.currentCard.show = !$scope.currentCard.show;
+                }
+            })
+            .catch(function(err) {
+                console.log('err when get all cards: ', err);
+            })
+    }
+
     });
 
 

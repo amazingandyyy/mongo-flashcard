@@ -17,12 +17,13 @@ router.post('/', (req, res) => {
         res.send(card);
     });
 });
-router.get('/:id', (req, res) => {
-    var cardId = req.params.id;
-    Card.findById(cardId, (err, card) => {
+router.get('/:category', (req, res) => {
+    var category = req.params.category;
+    console.log('category: ', category);
+    Card.find({cate: category}, (err, cards)=>{
         if (err) return res.status(400).send('errr: ', err);
-        res.send(card); // always give me an object
-    });
+        res.send(cards);
+    })
 });
 router.put('/:id', (req, res) => {
     var cardId = req.params.id;

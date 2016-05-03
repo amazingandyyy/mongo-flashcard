@@ -36,14 +36,14 @@
         <div class="col-xs-12 col-sm-4 col-md-3 cardCol">
             <form class="card formCard text-center" ng-submit="addnewCard()">
                 <span class="cate">
-                    <select ng-model="newCard.cate">
+                    <select ng-model="newCard.cate" required>
                         <option  value="" disabled selected>category</option>
                       <option value="math">math</option>
                       <option value="node">node</option>
                       <option value="jquery">jquery</option>
                       <option value="angular">angular</option>
                     </select>
-                    <select ng-model="newCard.level">
+                    <select ng-model="newCard.level" required>
                         <option value="" disabled selected>level</option>
                       <option value="easy">easy</option>
                       <option value="medium">medium</option>
@@ -55,11 +55,20 @@
                 <button type="submit" class="btn btn-default btn-xs">add this card ></button>
             </form>
         </div>
-        <div class="col-xs-6 col-sm-4 col-md-3 cardCol" ng-repeat="card in cards | orderBy:order | filter:searchFilter track by $index" style="cursor: pointer;">
+        <div class="col-xs-6 col-sm-4 col-md-3 cardCol" ng-repeat="card in cards | orderBy:order | filter:searchFilter track by $index" style="cursor: pointer;" ng-dblclick="editCard(card._id)">
             <div class="card text-center">
                 <span class="cate">{{card.cate}} - {{card.level}}</span >
                 <h3>{{card.question}}</h3>
+
+                <form ng-if="">
+                    <span class="cate">{{card.cate}} - {{card.level}}</span >
+                    <h3><input type="text" class="form-control" placeholder="question" ng-model="edittedCard.question" required></h3>
+                    <h3><input type="text" class="form-control" placeholder="answer" ng-model="edittedCard.answer" required></h3>
+                </form>
+
+
             </div>
+
         </div>
 
     </div>
