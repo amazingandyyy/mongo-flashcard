@@ -1,0 +1,10 @@
+<div class="jumbotron">
+  <h1><i class="fa fa-bar-chart" aria-hidden="true"></i> Summery</h1>
+  <hr>
+  <div class="row">
+      <div class="col-sm-12">
+          <h2>Total Items: {{totalNum()}} items</h2>
+          <h2>Total Value: {{totalValue() || 0 | currency: $}}</h2>
+          <h2>Average Value: {{totalValue() / totalNum() || 0 | currency: $}}</h2>
+      </div>
+  </div>

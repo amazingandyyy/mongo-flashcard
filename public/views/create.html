@@ -1,0 +1,49 @@
+<div class="row">
+    <div class="col-sm-4">
+        <h2><i class="fa fa-plus-square-o" aria-hidden="true"></i> Create a card</h2>
+        <form ng-submit="addnewCard()">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Question (Front Side)</label>
+                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Pineapple" ng-model="newCard.question" required>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Answer (Back Side)</label>
+                <input type="text" class="form-control" id="exampleInputPassword1" placeholder="exprire really soon" ng-model="newCard.answer">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Level (easy 1 - 5 hard)</label>
+                <input type="number" class="form-control" id="exampleInputPassword1" placeholder="4.03" ng-model="newCard.level" required>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Category</label>
+                <input type="text" class="form-control" id="exampleInputPassword1" placeholder=" Math, History, Science, coding..." ng-model="newCard.cate">
+            </div>
+            <button type="submit" class="btn btn-success">Create this card</button>
+        </form>
+    </div>
+    <div class="col-sm-8">
+        <h1><i class="fa fa-th-list" aria-hidden="true"></i> Cards</h1>
+
+            <div class="col-sm-6 cardCol">
+                <input type="text" placeholder="Find cards" class="form-control" ng-model="searchFilter">
+            </div>
+            <div class="col-sm-3 cardCol">
+                <button class="btn btn-default btn-block" ng-click="sortBy('level')" style="cursor: pointer;">Sort by Level</button>
+            </div>
+            <div class="col-sm-3 cardCol">
+                <button class="btn btn-default btn-block" ng-click="sortBy('cate')" style="cursor: pointer;">Sort by Category</button>
+            </div>
+
+        <div class="col-xs-12 col-sm-6 col-sm-4 cardCol" ng-repeat="card in cards | orderBy:order | filter:searchFilter track by $index" style="cursor: pointer;">
+            <div class="card text-center">
+                <span class="cate">{{card.cate}}</span >
+                        <h3>{{card.question}}</h3>
+                        <span class="level">level{{card.level}}</span >
+                    </div>
+                </div>
+            </div>
+
+    </div>
+
+
+</div>
