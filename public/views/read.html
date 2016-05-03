@@ -1,10 +1,20 @@
-<div class="jumbotron">
-  <h1><i class="fa fa-bar-chart" aria-hidden="true"></i> Summery</h1>
-  <hr>
-  <div class="row">
-      <div class="col-sm-12">
-          <h2>Total Items: {{totalNum()}} items</h2>
-          <h2>Total Value: {{totalValue() || 0 | currency: $}}</h2>
-          <h2>Average Value: {{totalValue() / totalNum() || 0 | currency: $}}</h2>
-      </div>
-  </div>
+<div class="row read">
+    <br><br>
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6 text-center" style="cursor: pointer;">
+        <div class="card">
+            <span class="cate">{{currentCard.cate}}</span >
+                <h3>{{currentCard.question}}</h3>
+                <h4>{{currentCard.answer}}</h4>
+            <span class="level">level{{currentCard.level}}</span >
+        </div>
+        <br>
+        <button type="button" class="btn btn-primary answer" ng-click="answerShow()">Show me the answer</button>
+    </div>
+    <div class="col-sm-3">
+        <br>    <br>    <br>   <br>    <br>    <br>
+        <button type="button" class="btn btn-success" ng-click="nextCard()"><i class="glyphicon glyphicon-menu-right"></i></button>
+        <br><br>
+    </div>
+
+</div>

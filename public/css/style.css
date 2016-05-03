@@ -63,6 +63,7 @@ padding-right: 1px;
     outline: none;
     padding-left: 1px;
     padding-right: 1px;
+    margin-top: -10px;
 }
 .card span.cate input {
 background: none;
@@ -74,5 +75,17 @@ padding-left: 1px;
 padding-right: 1px;
 }
 .card.formCard {
-    padding-top: 15px;
+    padding-top: 30px;
+}
+.read h3{
+    font-size: 4em;
+}
+.read .card{
+    padding-top: 80px;
+    border-radius: 10px;
+
+    min-height: 300px;
+}
+.read .btn.btn-primary.answer {
+    border-radius: 100px !important;
 }

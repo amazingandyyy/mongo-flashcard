@@ -5,8 +5,6 @@ app.controller('homeCtrl', function() {
     console.log('homeCtrl loaded');
 });
 
-
-
 app.controller('createCtrl', function($scope, Cards) {
     console.log('createCtrl loaded');
 
@@ -16,7 +14,7 @@ app.controller('createCtrl', function($scope, Cards) {
             $scope.cards = cards.data.reverse();
         }, function(err) {
             console.log('err when get all cards: ', err);
-        });
+    });
 
     $scope.addnewCard = () => {
         console.log('$scope.newCard; ',$scope.newCard);
@@ -31,10 +29,6 @@ app.controller('createCtrl', function($scope, Cards) {
     }
 
 
-
-
-
-
     $scope.sortBy = (order) => {
         if ($scope.order === order) {
             $scope.order = `-${order}`;
@@ -44,8 +38,43 @@ app.controller('createCtrl', function($scope, Cards) {
             // document.getElementById(`${order}Scaret`).style.transform = "rotate(180deg)";
         }
     }
-
 });
+
+app.controller('readCtrl', function(Cards, $scope) {
+    console.log('readCtrl loaded');
+    var cardList;
+    var index = 0;
+    Cards.getAll()
+        .then(function(cards) {
+             cardList = cards.data.reverse();
+            console.log('cardList: ',cardList);
+            console.log('cardList1: ',cardList[index]);
+        })
+        .then(function(){
+            $scope.currentCard = cardList[index];
+            $scope.nextCard = () => {
+                index++
+                $scope.currentCard = cardList[index];
+                console.log('index: ', index);
+                if(index>cardList.length){
+                    index = 0;
+                }
+            }
+            // $scope.answerShow = () => {
+            //     console.log('index: ', index);
+            //     console.log('cardList[index]: ', cardList[index]);
+            //     $scope.currentCard.answer = cardList[index].answer;
+            // }
+        })
+        .catch(function(err) {
+            console.log('err when get all cards: ', err);
+        })
+    });
+
+
+
+
+
 //
 // app.controller('detailCtrl', function($stateParams, $scope) {
 //     console.log('detailCtrl loaded');

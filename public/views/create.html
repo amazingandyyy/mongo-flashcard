@@ -33,13 +33,13 @@
         <div class="col-sm-3 cardCol">
             <button class="btn btn-default btn-block" ng-click="sortBy('cate')" style="cursor: pointer;">Sort by Category</button>
         </div>
-        <div class="col-xs-6 col-sm-4 col-md-3 cardCol">
+        <div class="col-xs-12 col-sm-4 col-md-3 cardCol">
             <form class="card formCard text-center" ng-submit="addnewCard()">
-                <span class="cate"><input type="text" class="form-control" placeholder="new category" ng-model="newCard.cate" required></span >
-                <h3><input type="text" class="form-control" placeholder="new question" ng-model="newCard.question" required></h3>
-                <h3><input type="text" class="form-control" placeholder="new answer" ng-model="newCard.answer" required></h3>
+                <span class="cate"><input type="text" class="form-control" placeholder="category" ng-model="newCard.cate" required></span >
+                <h3><input type="text" class="form-control" placeholder="question" ng-model="newCard.question" required></h3>
+                <h3><input type="text" class="form-control" placeholder="answer" ng-model="newCard.answer" required></h3>
                 <span class="level"><input type="number" class="form-control" max="3" min="1"placeholder="level" value="level" ng-model="newCard.level" required></span>
-                <button type="submit" class="btn btn-default btn-xs">add card ></button>
+                <button type="submit" class="btn btn-default btn-xs">add this card ></button>
             </form>
         </div>
         <div class="col-xs-6 col-sm-4 col-md-3 cardCol" ng-repeat="card in cards | orderBy:order | filter:searchFilter track by $index" style="cursor: pointer;">
