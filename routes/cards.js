@@ -39,5 +39,11 @@ router.delete('/:id', (req, res) => {
         res.send(); // always give me an object
     });
 });
+router.delete('/', (req, res) => {
+    Card.remove({}, (err, cards) => {
+        if (err) return res.status(400).send('errr: ', err);
+        res.send(cards); // always give me an array
+    });
+});
 
 module.exports = router;

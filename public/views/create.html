@@ -35,18 +35,30 @@
         </div>
         <div class="col-xs-12 col-sm-4 col-md-3 cardCol">
             <form class="card formCard text-center" ng-submit="addnewCard()">
-                <span class="cate"><input type="text" class="form-control" placeholder="category" ng-model="newCard.cate" required></span >
+                <span class="cate">
+                    <select ng-model="newCard.cate">
+                        <option  value="" disabled selected>category</option>
+                      <option value="math">math</option>
+                      <option value="node">node</option>
+                      <option value="jquery">jquery</option>
+                      <option value="angular">angular</option>
+                    </select>
+                    <select ng-model="newCard.level">
+                        <option value="" disabled selected>level</option>
+                      <option value="easy">easy</option>
+                      <option value="medium">medium</option>
+                      <option value="hard">hard</option>
+                    </select>
+                </span >
                 <h3><input type="text" class="form-control" placeholder="question" ng-model="newCard.question" required></h3>
                 <h3><input type="text" class="form-control" placeholder="answer" ng-model="newCard.answer" required></h3>
-                <span class="level"><input type="number" class="form-control" max="3" min="1"placeholder="level" value="level" ng-model="newCard.level" required></span>
                 <button type="submit" class="btn btn-default btn-xs">add this card ></button>
             </form>
         </div>
         <div class="col-xs-6 col-sm-4 col-md-3 cardCol" ng-repeat="card in cards | orderBy:order | filter:searchFilter track by $index" style="cursor: pointer;">
             <div class="card text-center">
-                <span class="cate">{{card.cate}}</span >
+                <span class="cate">{{card.cate}} - {{card.level}}</span >
                 <h3>{{card.question}}</h3>
-                <span class="level">level{{card.level}}</span >
             </div>
         </div>
 

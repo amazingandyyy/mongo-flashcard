@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 var Card = mongoose.model('Card', {
     question: String,
     answer: String,
-    level: Number,
+    level: String,
     cate: String,
     correct: Number
 });

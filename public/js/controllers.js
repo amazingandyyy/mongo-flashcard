@@ -32,10 +32,8 @@ app.controller('createCtrl', function($scope, Cards) {
     $scope.sortBy = (order) => {
         if ($scope.order === order) {
             $scope.order = `-${order}`;
-            // document.getElementById(`${order}Scaret`).style.transform = "rotate(0deg)";
         } else {
             $scope.order = order;
-            // document.getElementById(`${order}Scaret`).style.transform = "rotate(180deg)";
         }
     }
 });
@@ -54,17 +52,17 @@ app.controller('readCtrl', function(Cards, $scope) {
             $scope.currentCard = cardList[index];
             $scope.nextCard = () => {
                 index++
-                $scope.currentCard = cardList[index];
-                console.log('index: ', index);
-                if(index>cardList.length){
+                if(index>cardList.length-1){
                     index = 0;
                 }
+                $scope.currentCard = cardList[index];
+                console.log('index: ', index);
+
+                $scope.currentCard.show = false;
             }
-            // $scope.answerShow = () => {
-            //     console.log('index: ', index);
-            //     console.log('cardList[index]: ', cardList[index]);
-            //     $scope.currentCard.answer = cardList[index].answer;
-            // }
+            $scope.answerShow = () => {
+                $scope.currentCard.show = !$scope.currentCard.show;
+            }
         })
         .catch(function(err) {
             console.log('err when get all cards: ', err);
